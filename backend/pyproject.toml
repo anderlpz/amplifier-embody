@@ -6,17 +6,12 @@ requires-python = ">=3.11"
 authors = [
     {name = "Embody Team"}
 ]
-readme = "README.md"
 license = {text = "MIT"}
 
 dependencies = [
     "fastapi>=0.109.0",
     "uvicorn[standard]>=0.27.0",
     "amplifier-foundation @ git+https://github.com/microsoft/amplifier-foundation@main",
-    "amplifier-core @ git+https://github.com/microsoft/amplifier-core@main",
-    "amplifier-profiles @ git+https://github.com/microsoft/amplifier-profiles@main",
-    "amplifier-module-resolution @ git+https://github.com/microsoft/amplifier-module-resolution@main",
-    "amplifier-collections @ git+https://github.com/microsoft/amplifier-collections@main",
     "pydantic>=2.0.0",
     "python-multipart>=0.0.6",
     "python-dotenv>=1.0.0",
