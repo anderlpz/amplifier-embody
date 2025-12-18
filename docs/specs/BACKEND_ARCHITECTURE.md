@@ -1,31 +1,36 @@
 # Embody Backend Architecture
 
-> **Foundation-powered backend for design system exploration**
+> **Foundation-powered backend for a design system generator**
 
 **Project Name**: Embody  
+**Version**: 1.0.0  
 **Status**: Architecture Specification  
+**Created**: December 17, 2025 at 14:44 PST  
 **Built on**: [Amplifier Foundation](https://github.com/microsoft/amplifier-foundation)
 
 ---
 
 ## 🎯 Overview
 
-Embody's backend uses **Amplifier Foundation** to provide intelligent, iterative design system exploration. Unlike traditional generate-and-forget tools, Embody maintains **stateful sessions** where designers refine concepts through feedback loops.
+Embody's backend uses **Amplifier Foundation** to power a **design system generator**. The product is the generator itself—a system that learns your design perspective and produces coherent design systems based on your encoded taste.
 
-**Key Insight**: Embody isn't just design agents - it's a **collection-based system** that combines:
+Unlike traditional generate-and-forget tools, Embody maintains **stateful sessions** where each feedback round tunes the generator to better understand and produce your aesthetic.
+
+**Key Insight**: Embody is a **generator that learns taste** through a **collection-based agent system**:
 - **Developer expertise** (zen-architect, modular-builder) for code understanding
 - **Design intelligence** (design-system-architect, component-designer) for design thinking  
 - **Foundation utilities** (foundation-explorer, researcher, session-finder) for discovery
-- **Custom design agents** (context-gatherer, concept-generator) for Embody-specific workflows
+- **Custom generator agents** (context-gatherer, concept-generator, refinement-engine) for training and tuning the generator
 
 ### Core Principles
 
-1. **Collection-Based**: Use existing Amplifier collections + Embody-specific agents
-2. **Foundation-Native**: Use bundles, profiles, and agents as primary abstractions
-3. **Session-Oriented**: Each exploration is a stateful session with history
-4. **Cross-Domain**: Design + code + research agents work together
-5. **Composable**: Modules can be swapped, extended, or replaced
-6. **Standalone First**: Web app initially, Amplifier module later
+1. **Generator-First**: The product is the generator that learns and produces taste
+2. **Collection-Based**: Use existing Amplifier collections + Embody-specific generator agents
+3. **Foundation-Native**: Use bundles, profiles, and agents as primary abstractions
+4. **Stateful Learning**: Each session trains the generator to understand designer's aesthetic
+5. **Cross-Domain**: Design + code + research agents work together to inform generation
+6. **Composable**: Modules can be swapped, extended, or replaced
+7. **Standalone First**: Web app initially, Amplifier module later
 
 ---
 
@@ -162,10 +167,10 @@ collections:
 agents: all  # Load all agents from all collections
 ---
 
-# Embody Profile
+# Embody Generator Profile
 
-This profile configures Claude Sonnet with design-focused agents for iterative
-design system exploration.
+This profile configures Claude Sonnet with design-focused agents for training
+and running the design system generator.
 ```
 
 ---
@@ -199,29 +204,32 @@ Collections Available to Embody:
    └── amplifier-explainer.md     # Framework explanation
 
 4. embody-collection (local)
-   ├── context-gatherer.md        # Parse designer intent
-   ├── concept-generator.md       # Generate design concepts
-   ├── refinement-engine.md       # Iterative refinement
-   └── documentation-builder.md   # Journey documentation
+   ├── context-gatherer.md        # Parse designer perspective into generator constraints
+   ├── concept-generator.md       # Generate design system variations
+   ├── refinement-engine.md       # Train generator based on feedback
+   └── documentation-builder.md   # Export system + generator state
 ```
 
 ### Why Collection-Based?
 
-**Cross-Domain Intelligence**:
+**Cross-Domain Intelligence for Generation**:
 ```
-User: "Extract design tokens and analyze code architecture"
+User: "Train a generator for my design aesthetic"
 
-Embody:
-  1. Uses foundation:explorer to survey codebase
-  2. Uses developer-expertise:zen-architect to analyze structure
-  3. Uses embody-collection:concept-generator to create design concepts
-  4. Uses design-intelligence:component-designer to refine components
+Embody Generator:
+  1. Uses foundation:explorer to survey codebase (understand current state)
+  2. Uses developer-expertise:zen-architect to analyze structure (technical context)
+  3. Uses embody-collection:context-gatherer to define generator constraints
+  4. Uses embody-collection:concept-generator to produce design system variations
+  5. Uses embody-collection:refinement-engine to tune generator based on feedback
+  6. Uses design-intelligence:component-designer to refine generated components
 ```
 
 **Reusability**:
-- Existing agents (zen-architect, researcher) work in Embody without changes
-- Embody-specific agents could be used in other Amplifier tools
+- Existing agents (zen-architect, researcher) work in Embody's generator without changes
+- Embody's generator agents could be used in other design tools
 - Collections are versioned and maintained independently
+- The trained generator constraints are portable and reusable
 
 **Modularity**:
 - Swap collections without touching Embody code
@@ -230,9 +238,9 @@ Embody:
 
 ---
 
-## 📚 Embody Collection Agents
+## 📚 Embody Generator Collection Agents
 
-These are the **new agents** specific to Embody's design exploration workflow.
+These are the **new agents** specific to Embody's generator workflow—training and running a design system generator.
 
 ### 1. `context-gatherer.md`
 Located at `.embody/collections/embody/agents/context-gatherer.md`:
@@ -240,21 +248,21 @@ Located at `.embody/collections/embody/agents/context-gatherer.md`:
 ```yaml
 ---
 name: context-gatherer
-role: Design Intent Parser
+role: Generator Constraint Parser
 version: 1.0.0
 ---
 
 # Context Gatherer Agent
 
-You are an expert at understanding designer intent from brief inputs.
+You are an expert at translating designer perspective into generator constraints.
 
 ## Your Task
 
-Given designer responses to context questions, extract:
-1. **Primary Goal**: What they're trying to achieve
-2. **Desired Qualities**: Characteristics that matter (bold, calm, etc.)
-3. **Constraints**: Guardrails they must respect
-4. **Implicit Intent**: What they might not have said but is implied
+Given designer responses to context questions, extract the constraints that will guide the generator:
+1. **Primary Goal**: What they're trying to achieve (generation direction)
+2. **Desired Qualities**: Aesthetic characteristics that define their taste
+3. **Hard Constraints**: Guardrails the generator must respect
+4. **Implicit Preferences**: What they might not have said but is implied from their choices
 
 ## Input Format
 
@@ -298,23 +306,25 @@ Located at `.embody/collections/embody/agents/concept-generator.md`:
 ```yaml
 ---
 name: concept-generator
-role: Design Concept Creator
+role: Design System Variation Generator
 version: 1.0.0
 ---
 
 # Concept Generator Agent
 
-You create design system concepts based on parsed designer intent.
+You are the core generation engine that produces design system variations based on learned constraints.
 
 ## Your Task
 
 Given:
 - Current design tokens (extracted from codebase)
-- Parsed designer intent
-- Generation guidance
+- Generator constraints (from context-gatherer)
+- Learned preferences (from previous feedback rounds)
 
-Create 3-4 **distinct** design concepts that explore different interpretations
-of the designer's goal.
+Produce 3-4 **distinct design system variations** that:
+- Stay true to the defined constraints (the designer's encoded taste)
+- Explore different interpretations within those constraints
+- Maintain coherence (all variations feel like they came from the same perspective)
 
 ## Concept Structure
 
@@ -401,26 +411,26 @@ Located at `.embody/collections/embody/agents/refinement-engine.md`:
 ```yaml
 ---
 name: refinement-engine
-role: Iterative Concept Refiner
+role: Generator Training Engine
 version: 1.0.0
 ---
 
 # Refinement Engine Agent
 
-You evolve design concepts based on designer feedback.
+You tune the generator based on designer feedback, improving its ability to produce their aesthetic.
 
 ## Your Task
 
 Given:
-- Previously generated concepts
+- Previously generated variations
 - Designer feedback (👍 liked, 👎 disliked, 👁️ explored)
-- Refinement round number
+- Current generator state
 
-Generate new concepts that:
-1. **Build on liked concepts**: Create variations on what worked
-2. **Avoid disliked directions**: Learn from what didn't resonate
-3. **Blend approaches**: Combine aspects of multiple liked concepts
-4. **Deepen exploration**: Show the same direction in different contexts
+**Train the generator** to better understand the designer's aesthetic:
+1. **Learn from positive feedback**: What qualities resonated? Prioritize these in future generation
+2. **Learn from negative feedback**: What qualities didn't work? Avoid these directions
+3. **Refine constraints**: Update the generator's understanding of the designer's taste
+4. **Produce refined variations**: Generate new outputs using the updated generator state
 
 ## Feedback Types
 
@@ -515,25 +525,26 @@ Located at `.embody/collections/embody/agents/documentation-builder.md`:
 ```yaml
 ---
 name: documentation-builder
-role: Design Journey Documenter
+role: Generator Export & Documentation Agent
 version: 1.0.0
 ---
 
 # Documentation Builder Agent
 
-You capture the design exploration journey for team handoff.
+You export the generated design system AND the trained generator constraints for future use.
 
 ## Your Task
 
 Given:
 - Session history (context, concepts, feedback, refinements)
 - Final selected direction
+- Trained generator state (learned constraints)
 
-Create documentation that:
-1. **Preserves thinking**: Show how we got here
-2. **Explains rationale**: Why this direction works
-3. **Bridges to engineering**: Clear next steps
-4. **Captures context**: Future teams understand the decisions
+Create comprehensive exports:
+1. **The Generated Design System**: Tokens, components, documentation, usage guidelines
+2. **Generator Constraints**: The encoded perspective (for regeneration in new contexts)
+3. **Journey Documentation**: How the generator learned this aesthetic
+4. **Engineering Handoff**: Clear implementation steps with full context
 
 ## Output Format
 
@@ -794,15 +805,15 @@ A bold, modern design system built on high-contrast foundations with strategic u
 
 ---
 
-## 🔄 Session Flow
+## 🔄 Generator Session Flow
 
-### 1. Session Creation
+### 1. Session Creation (Initialize Generator)
 
 ```python
 # POST /api/sessions/create
 async def create_session(repo_path: str) -> SessionResponse:
     """
-    Create new Embody session
+    Create new Embody generator session
     
     Steps:
     1. Extract tokens from repository (background)
@@ -857,7 +868,7 @@ async def create_session(repo_path: str) -> SessionResponse:
     return {"session_id": session.session_id, "tokens": extracted_tokens}
 ```
 
-### 2. Context Gathering
+### 2. Define Generator Constraints
 
 ```python
 # POST /api/sessions/{session_id}/gather-context
@@ -866,14 +877,14 @@ async def gather_context(
     goal: str,
     qualities: list[str],
     constraints: list[str] = []
-) -> ParsedIntent:
+) -> GeneratorConstraints:
     """
-    Parse designer intent using embody-collection:context-gatherer agent
+    Define generator constraints using embody-collection:context-gatherer agent
     
     Uses task tool to spawn agent from embody collection:
-    - Analyzes designer inputs
-    - Infers implicit needs
-    - Provides generation guidance
+    - Translates designer perspective into generation constraints
+    - Infers implicit aesthetic preferences
+    - Initializes generator with these constraints
     """
     session = sessions[session_id]
     
@@ -908,20 +919,20 @@ async def gather_context(
     return parsed_intent
 ```
 
-### 3. Concept Generation
+### 3. Generate Design System Variations
 
 ```python
 # POST /api/sessions/{session_id}/generate-concepts
-async def generate_concepts(session_id: str) -> list[Concept]:
+async def generate_concepts(session_id: str) -> list[DesignSystemVariation]:
     """
-    Generate initial design concepts using concept-generator agent
+    Generate design system variations using the initialized generator
     
-    May also consult design-intelligence:design-system-architect for guidance
-    
-    Spawns agents with:
+    The generator (concept-generator agent) produces variations based on:
     - Current tokens (from extraction)
-    - Parsed intent (from context-gatherer)
-    - Generation guidance
+    - Generator constraints (from context-gatherer)
+    - Design system principles (from design-intelligence:design-system-architect)
+    
+    Each variation explores a different interpretation within the constraints
     """
     session = sessions[session_id]
     session_state = load_session_state(session_id)
@@ -966,21 +977,25 @@ async def generate_concepts(session_id: str) -> list[Concept]:
     return concepts
 ```
 
-### 4. Refinement Loop
+### 4. Train Generator (Refinement Loop)
 
 ```python
 # POST /api/sessions/{session_id}/refine
 async def refine_concepts(
     session_id: str,
     feedback: dict[str, list[str]]  # {"liked": [...], "disliked": [...]}
-) -> list[Concept]:
+) -> list[DesignSystemVariation]:
     """
-    Refine concepts based on feedback
+    Train the generator based on feedback
     
-    May use multiple agents:
-    - embody-collection:refinement-engine - Iterative refinement
+    The refinement-engine agent:
+    1. Learns from feedback (what resonated vs what didn't)
+    2. Updates generator constraints to better match designer's aesthetic
+    3. Uses updated generator to produce refined variations
+    
+    May consult additional agents for deeper refinement:
     - design-intelligence:component-designer - Component-level details
-    - design-intelligence:art-director - Aesthetic refinement
+    - design-intelligence:art-director - Aesthetic guidance
     """
     session = sessions[session_id]
     session_state = load_session_state(session_id)
@@ -1028,21 +1043,26 @@ async def refine_concepts(
     return refined["concepts"]
 ```
 
-### 5. Finalization
+### 5. Export Generated System + Generator State
 
 ```python
 # POST /api/sessions/{session_id}/finalize
 async def finalize_direction(
     session_id: str,
     selected_concept_id: str
-) -> Documentation:
+) -> GeneratorExport:
     """
-    Generate journey documentation
+    Export the generated design system + trained generator state
     
-    Uses multiple agents for complete handoff:
-    - embody-collection:documentation-builder - Journey narrative
+    Uses multiple agents for complete export:
+    - embody-collection:documentation-builder - Export system + generator constraints
     - developer-expertise:zen-architect - Implementation guidance
-    - design-intelligence:design-system-architect - Design system spec
+    - design-intelligence:design-system-architect - Design system specification
+    
+    Returns:
+    - Design system artifacts (tokens, components, docs)
+    - Generator constraints (for regeneration in new contexts)
+    - Journey documentation (the "why" behind the aesthetic)
     """
     session = sessions[session_id]
     session_state = load_session_state(session_id)
@@ -1347,6 +1367,237 @@ Amplifier: [Shows 4 concept previews] "Here are four directions..."
 
 ---
 
+## 🎁 Amplifier Contribution Strategy
+
+**Core Principle**: Build for Amplifier from day one. Every component should be a potential contribution back to the Amplifier ecosystem.
+
+### Contribution Candidates (Identified)
+
+#### 1. `amplifier-module-design-tokens` (High Priority)
+
+**Purpose**: Extract and convert design tokens from codebases
+
+**Functionality**:
+- Parse CSS, SCSS, Tailwind config, CSS-in-JS
+- Extract colors, typography, spacing, effects, behaviors
+- Convert between formats (Figma tokens, CSS variables, Tailwind config)
+- Token analysis and classification
+
+**Why Valuable to Amplifier**:
+- Any Amplifier project needing design context benefits
+- Standalone utility independent of Embody
+- Useful for code analysis, documentation, migration
+
+**Implementation Status**: Core extraction in Phase 1 (Week 1-2)  
+**Contribution Timeline**: End of Phase 1 (Week 4)
+
+**Location in Codebase**:
+```
+amplifier-embody/modules/design-tokens/
+└── (extract to) amplifier-module-design-tokens/
+```
+
+---
+
+#### 2. `embody-collection` (High Priority)
+
+**Purpose**: Design intelligence agents for generation and refinement
+
+**Agents**:
+- `context-gatherer.md`: Parse design perspective into generator constraints
+- `concept-generator.md`: Generate design system variations
+- `refinement-engine.md`: Train generator based on feedback
+- `documentation-builder.md`: Export systems with documentation
+
+**Why Valuable to Amplifier**:
+- Provides design intelligence for all Amplifier users
+- Complements existing developer-expertise and design-intelligence collections
+- Enables design-first workflows for non-designers
+
+**Implementation Status**: Core agents in Phase 1 (Week 1-2)  
+**Contribution Timeline**: End of Phase 1 (Week 4)
+
+**Location in Codebase**:
+```
+amplifier-embody/.embody/collections/embody/
+└── (extract to) amplifier-collection-embody/
+```
+
+---
+
+#### 3. `amplifier-module-design-export` (Medium Priority)
+
+**Purpose**: Export design systems to multiple formats
+
+**Functionality**:
+- Figma tokens JSON
+- CSS variables
+- Tailwind config
+- Styled-components theme
+- Chakra UI theme
+- Design documentation generation
+
+**Why Valuable to Amplifier**:
+- Standard export utilities for design tooling
+- Useful for any project generating design systems
+- Format conversions between design tools
+
+**Implementation Status**: Basic exports in Phase 1, enhanced in Phase 2  
+**Contribution Timeline**: Phase 2 (Week 10)
+
+**Location in Codebase**:
+```
+amplifier-embody/modules/design-export/
+└── (extract to) amplifier-module-design-export/
+```
+
+---
+
+#### 4. `amplifier-module-embody-ui` (Lower Priority)
+
+**Purpose**: UI orchestration layer for design tools
+
+**Functionality**:
+- Session management UI patterns
+- Concept gallery components
+- Feedback collection interfaces
+- Export/download flows
+
+**Why Valuable to Amplifier**:
+- Reusable UI patterns for design-focused Amplifier apps
+- Could enable other design tools in ecosystem
+- Standard UI components for design workflows
+
+**Implementation Status**: Built throughout Phase 1-3  
+**Contribution Timeline**: Phase 4 (Week 20) after validation
+
+**Location in Codebase**:
+```
+amplifier-embody/app/ (extract reusable components)
+└── (extract to) amplifier-module-embody-ui/
+```
+
+---
+
+#### 5. `amplifier-collection-design-education` (Future)
+
+**Purpose**: Educational agents that explain design principles
+
+**Agents**:
+- Design rationale explainer
+- Accessibility guidance
+- Best practice suggestions
+- Design vocabulary builder
+
+**Why Valuable to Amplifier**:
+- Helps all users learn design while working
+- Reduces need for design expertise
+- Improves design literacy across ecosystem
+
+**Implementation Status**: Phase 3  
+**Contribution Timeline**: Phase 3 (Week 16)
+
+---
+
+### Component Architecture for Contribution
+
+**Standalone Modules** (can work independently):
+- `amplifier-module-design-tokens`: No Embody dependencies
+- `amplifier-module-design-export`: Depends only on token format
+- Both can be used in any Amplifier project
+
+**Embody-Dependent** (require Embody context):
+- `embody-collection`: Agents designed for generator workflow
+- `amplifier-module-embody-ui`: UI components for Embody patterns
+
+**However**: Even Embody-dependent components follow Amplifier patterns and could inform future features.
+
+---
+
+### Repository Structure for Contributions
+
+**During Development** (all in `amplifier-embody`):
+```
+amplifier-embody/
+├── .embody/collections/embody/          # embody-collection
+├── backend/service.py                   # Embody-specific backend
+├── app/                                 # Embody UI
+└── modules/                             # Module development area
+    ├── design-tokens/                   # develop here
+    ├── design-export/                   # develop here
+    └── embody-ui/                       # develop here
+```
+
+**After Extraction** (separate repositories):
+```
+amplifier-module-design-tokens/          # Standalone repo
+├── README.md
+├── pyproject.toml
+├── src/design_tokens/
+└── tests/
+
+amplifier-collection-embody/             # Standalone repo
+├── collection.md
+├── agents/
+│   ├── context-gatherer.md
+│   ├── concept-generator.md
+│   ├── refinement-engine.md
+│   └── documentation-builder.md
+└── README.md
+```
+
+**Embody References Official Modules**:
+```yaml
+# .embody/profiles/default.md (after contribution)
+tools:
+  - module: design-tokens
+    source: git+https://github.com/microsoft/amplifier-module-design-tokens@main
+  
+  - module: design-export
+    source: git+https://github.com/microsoft/amplifier-module-design-export@main
+
+collections:
+  - name: embody
+    source: git+https://github.com/microsoft/amplifier-collection-embody@main
+```
+
+---
+
+### Contribution Workflow
+
+**For Each Module/Collection**:
+
+1. **Develop in Embody**: Build and test within `amplifier-embody` repo
+2. **Validate Thoroughly**: Use in production, dogfood with Amplifier team
+3. **Extract to Standalone**: Move to separate repository with clean history
+4. **Documentation**: Complete README, API docs, usage examples
+5. **Testing**: Comprehensive test suite independent of Embody
+6. **Follow Guidelines**: Amplifier contribution guidelines
+7. **Submit PR**: To Amplifier ecosystem with rationale
+8. **Iterate**: Address feedback, improve based on review
+9. **Once Accepted**: Update Embody to use official module
+
+---
+
+### Testing Strategy for Contributions
+
+**Each module must**:
+- Work independently (no Embody dependencies unless stated)
+- Have comprehensive test suite
+- Include usage examples
+- Pass Amplifier quality standards
+- Be documented for non-Embody users
+
+**Validation Checklist**:
+- ✅ Works in isolation
+- ✅ Clear API/interface
+- ✅ Documented usage
+- ✅ Test coverage > 80%
+- ✅ Follows Amplifier patterns
+- ✅ Valuable beyond Embody
+
+---
+
 ## 🤝 Contributing
 
 This architecture embodies Foundation best practices:
@@ -1354,14 +1605,18 @@ This architecture embodies Foundation best practices:
 - **Stateful sessions**: AmplifierSession lifecycle
 - **Agent delegation**: Task tool for specialized intelligence
 - **Composable**: Swap modules, extend with new agents
+- **Amplifier-ready**: Every component designed for potential contribution
+
+**For detailed contribution process**:
+See [CONTRIBUTING_TO_AMPLIFIER.md](../planning/CONTRIBUTING_TO_AMPLIFIER.md)
 
 **Questions?**
 - Foundation docs: https://github.com/microsoft/amplifier-foundation
 - amplifier-forge reference: `/Users/alexlopez/Sites/OCTO/amplifier-forge`
+- Contribution guidelines: [TBD - Amplifier contribution docs]
 
 ---
 
 **Built with [Amplifier Foundation](https://github.com/microsoft/amplifier-foundation)** 🤖
 
-*Design is forming a point of view about a future state.  
-This backend helps designers reach that clarity through Foundation-powered exploration.*
+*Every component designed to give back to the ecosystem that makes it possible.*

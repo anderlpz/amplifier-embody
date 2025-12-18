@@ -1,59 +1,100 @@
 # 🎨 Embody
 
-> **An Amplifier-powered design system exploration tool that helps designers form and refine their perspective**
+> **A design system generator that embodies perspective into taste**
 
+**Version**: 1.0.0  
 **Status**: Architecture & Design Phase  
+**Created**: December 17, 2025 at 14:44 PST  
 **Built with**: [Amplifier Foundation](https://github.com/microsoft/amplifier-foundation)
 
 ---
 
 ## 🎯 What is Embody?
 
-Embody is a design system exploration tool that embodies a core philosophy:
+**Embody is a design system generator.** The output is a design system, but the **product is the generator itself.**
+
+This distinction is critical: we're not building a design system library or a token set. We're building **the thing that generates design systems** based on your perspective.
+
+### The Generator Philosophy
 
 > **Design is the act of forming a point of view about a future state, not the act of assembling its implementation.**
 
-Most design system tools collapse design into production, optimizing for output at the expense of imagination. Embody stays **referential**—helping designers externalize, examine, and evolve their perspective through guided iteration.
+Embody embodies this philosophy by:
+- **Encoding taste** - Your perspective becomes the generative constraints
+- **Producing coherent variations** - Every output feels like it came from the same place
+- **Enabling iteration** - Refine the generator, regenerate the system
+- **Maintaining recognizability** - Like Rolex or Chipotle: customization within constraints
 
-### The Hybrid Approach
+### Why "Generator" Matters
 
-Embody is **not** a "roll the dice and pick one" generator.  
-Embody is **not** a fully conversational chatbot that's too slow.
+When we say "design system," people think: tokens, components, documentation.  
+When we say "generator," we imply:
+- **Upstream thinking** - Input → constraints → output
+- **Iteration** - Regenerate with different contexts
+- **Taste** - It's producing a point of view, not just artifacts
+- **Customization** - But within a coherent system
 
-**Embody is**: Context → Generate → Refine
+**Think Chipotle**: You're customizing your burrito, but you're not inventing a new cuisine. You choose ingredients within constraints, and the result is still recognizably Chipotle.
+
+**Think Rolex**: Choices exist (dial color, bracelet style), but the crown stays where it belongs. Constraints ensure the output remains recognizably Rolex.
+
+**Embody works the same way**: You customize within your encoded taste, and every generated variation maintains your recognizable perspective.
+
+### How the Generator Works
+
+**Input**: Your design perspective (goals, qualities, constraints)  
+**Process**: AI-powered generation with iterative refinement  
+**Output**: A coherent design system that embodies your perspective
 
 ```
-1. Gather Context (60 seconds)
-   Designer answers 2-3 focused questions
+1. Define Your Perspective (60 seconds)
+   What's your goal? What qualities matter?
+   → These become the generator's constraints
    
-2. Generate Concepts (AI-powered, contextual)
-   4 distinct design concepts based on intent
+2. Generator Creates Variations (AI-powered)
+   4 distinct interpretations of your perspective
+   → Each explores a different approach
    
-3. Quick Feedback (👍/👎/Details)
-   Designer reacts to guide refinement
+3. Refine the Generator (👍/👎 feedback)
+   Your reactions tune the generation logic
+   → Not random—learning what "tastes right" to you
    
-4. Iterative Refinement (2-4 rounds)
-   Concepts evolve based on feedback until "this feels right"
+4. Iterate Until Coherent (2-4 rounds)
+   Generator evolves to produce your aesthetic
+   → Result: A design system that feels recognizably "yours"
    
-5. Document Journey
-   Capture the thinking process for engineering handoff
+5. Export the System
+   Tokens, components, documentation, usage guidance
+   → The artifact + the story of how you got there
 ```
+
+**Key Insight**: You're not picking from pre-made options. You're **training a generator to understand your taste**, then using it to produce a coherent design system.
 
 ---
 
 ## 📚 Documentation
 
-- **[EXPERIENCE_SPEC.md](./EXPERIENCE_SPEC.md)** - Complete user experience specification (v3.0)
+- **[EXPERIENCE_SPEC.md](./docs/specs/EXPERIENCE_SPEC.md)** - Complete user experience specification (v3.0)
   - Hybrid approach philosophy
   - User flows and interactions
-  - UI component breakdown
+  - UI component breakdown and design system
   - Success metrics
   
-- **[BACKEND_ARCHITECTURE.md](./BACKEND_ARCHITECTURE.md)** - Technical architecture
+- **[BACKEND_ARCHITECTURE.md](./docs/specs/BACKEND_ARCHITECTURE.md)** - Technical architecture
   - Amplifier Foundation integration
   - Collection-based agent system
-  - Session management
-  - API design
+  - Session management and API design
+  - Amplifier contribution strategy
+
+- **[USERS.md](./docs/research/USERS.md)** - User research & personas
+  - User spectrum (non-designers → designers)
+  - Jobs to be done
+  - Entry points and interaction modes
+  
+- **[ROADMAP.md](./docs/planning/ROADMAP.md)** - Development roadmap
+  - Phased rollout strategy
+  - Amplifier contribution timeline
+  - Success metrics by phase
 
 ---
 
@@ -107,37 +148,41 @@ Collections:
 
 ## 🎨 Core Philosophy
 
-### Preserve Imagination
+### The Generator is the Product
 
-**Tools should expand possibility space, not constrain it.**
-- Offer perspectives, not prescriptions
-- Support "what if" thinking
-- Delay technical constraints
-- Encourage ambition
+**The artifact (design system) is the output. The generator is what you're building.**
 
-### Stay Referential
+When you refine concepts through feedback, you're not just picking designs—you're teaching the generator to understand your aesthetic. The generator encodes your taste and produces coherent variations.
 
-**Tools should help designers think, not think for them.**
-- Ask questions before generating
-- Offer language and frameworks
-- Show implications of choices
-- Never decide on their behalf
+### Taste Within Constraints
 
-### Document Thinking
+**Infinite freedom produces incoherence. Constraints produce recognizability.**
 
-**Capture the journey, not just the destination.**
-- Track conversation history
-- Preserve decision reasoning
-- Show evolution of thought
-- Bridge to engineering with context
+Like Chipotle's burrito line or Rolex's watch configurator:
+- You have choices (ingredients, dial color)
+- But not infinite freedom (no sushi at Chipotle, no crown relocation on Rolex)
+- The result is **recognizably from that system**
 
-### Support Collaboration
+Embody works the same way: it generates variations that all feel like they came from your perspective.
 
-**Strengthen designer-engineer communication.**
-- Clear vision documentation
-- Rationale preservation
-- Gradual specificity
-- Shared understanding
+### Iteration as Refinement
+
+**You're not picking "the one." You're refining the generator until outputs feel right.**
+
+Each feedback round tunes the generation logic:
+- 👍 "More like this" → Generator learns what resonates
+- 👎 "Not this direction" → Generator learns what to avoid
+- After 2-4 rounds → Generator consistently produces your aesthetic
+
+### Coherent, Not Generic
+
+**The output should reflect a point of view, not be a least-common-denominator compromise.**
+
+Generic design systems lack character. Embody helps you:
+- **Encode your perspective** into generation constraints
+- **Produce taste** not just tokens
+- **Maintain coherence** across all generated variations
+- **Stay recognizable** even with customization
 
 ---
 
@@ -168,37 +213,54 @@ Collections:
 
 ## 🎯 Key Differentiators
 
-### vs Traditional Design Tools
-- **Not template-driven** - Emerges from your actual design tokens
-- **Not prescriptive** - Offers perspectives, doesn't enforce patterns
-- **Not one-shot** - Iterative refinement until satisfied
+### Generator vs Library
 
-### vs AI Generation Tools
-- **Not random** - Concepts based on your stated intent
-- **Not black box** - Shows reasoning and journey
-- **Not fire-and-forget** - Maintains stateful conversation
+**Traditional Design System** (Library approach):
+- Here's a set of tokens and components
+- Use them as-is or customize manually
+- One static artifact
 
-### vs Design Documentation Tools
-- **Not just recording** - Actively helps think through decisions
-- **Not static** - Living exploration that evolves
-- **Not isolated** - Connects design thinking to engineering reality
+**Embody** (Generator approach):
+- Here's a system that generates design systems
+- Train it with your perspective
+- Regenerate for different contexts while maintaining your taste
+
+### Constrained Customization
+
+**Infinite Freedom** → Incoherent outputs  
+**No Freedom** → Generic, lifeless systems  
+**Embody** → Customization within taste constraints
+
+Like ordering at Chipotle or configuring a Rolex:
+- You feel like you're customizing
+- But you're working within a coherent system
+- The result is recognizably from that brand
+
+### Perspective as Input
+
+**Traditional tools**: "What do you want it to look like?"  
+**Embody**: "What's your design perspective?" → Generator learns your taste → Produces coherent variations
+
+You're not describing the artifact. You're defining the generator's constraints.
 
 ---
 
-## 🤝 Philosophy in Action
+## 🤝 The Generator in Action
 
 ### Example Session
 
 ```
 Designer: [Connects codebase] → 47 tokens extracted
 
-Embody: "What's your focus?"
+Embody: "What's your design perspective?"
 Designer: "Rebrand - more modern and bold"
 
-Embody: "What matters most?"
+Embody: "What qualities define your aesthetic?"
 Designer: "Bold + Modern + Accessible"
 
-Embody: [Generates 4 concepts]
+[Generator initialized with these constraints]
+
+Embody: [Generator produces 4 variations]
   • High Contrast Modernism (B&W + electric accents)
   • Geometric Bold (sharp angles, grid)
   • Gradient Modern (vibrant, smooth)
@@ -206,21 +268,25 @@ Embody: [Generates 4 concepts]
 
 Designer: 👍 High Contrast, 👎 Gradient, 👁️ Geometric
 
-Embody: [Refines based on feedback]
+[Generator learns: prioritize contrast, avoid gradients]
+
+Embody: [Generator produces refined variations]
   • Even Bolder (pure B&W + neon)
   • Softer Edges (rounded, friendlier)
   • Color Emphasis (strategic color) ⭐
 
 Designer: 👍 Color Emphasis → "This feels right"
 
-Embody: [Documents journey]
-  • Design brief (for stakeholders)
-  • Token specs (for engineers)
-  • Implementation guide (step-by-step)
-  • Figma export (for validation)
+[Generator now tuned to produce this aesthetic consistently]
+
+Embody: [Exports the generated system]
+  • Design system (tokens, components, docs)
+  • Generator constraints (for regeneration)
+  • Journey documentation (the "why")
+  • Multiple export formats (Figma, CSS, Tailwind)
 ```
 
-**Result**: Clear design direction with full rationale, ready for engineering.
+**Result**: A design system that embodies your perspective, plus the generator tuned to produce more in the same aesthetic.
 
 ---
 
